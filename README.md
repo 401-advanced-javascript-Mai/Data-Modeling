@@ -4,7 +4,11 @@
 Author: Mai Yousef
 ## Links and Resources
 submission PR
+https://github.com/401-advanced-javascript-Mai/Data-Modeling/pulls
+
 ci/cd (GitHub Actions)
+https://github.com/401-advanced-javascript-Mai/Data-Modeling/actions
+
 ## Setup
 ## How to initialize/run your application (where applicable)
 e.g. npm start
