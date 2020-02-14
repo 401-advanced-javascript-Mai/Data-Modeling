@@ -1,4 +1,5 @@
-const Categories = require('../categories/categories.js');
+
+const Categories = require('../categories/catogries.js');
 
 describe('Categories Model', () => {
 
@@ -9,26 +10,57 @@ describe('Categories Model', () => {
   });
 
   it('can post() a new category', () => {
-    let obj = { name: 'Test Category' };
-    return categories.create(obj)
+    let list = { name: 'Test Category' };
+    return categories.create(list)
       .then(record => {
-        Object.keys(obj).forEach(key => {
-          expect(record[key]).toEqual(obj[key]);
+        Object.keys(list).forEach(key => {
+          expect(record[key]).toEqual(list[key]);
         });
       })
-      .catch(e => console.error('ERR', e));
+      .catch(error => console.error( error));
   });
 
   it('can get() a category', () => {
-    let obj = { name: 'Test Category' };
-    return categories.create(obj)
+    let list = { name: 'Test Category' };
+    return categories.create(list)
       .then(record => {
         return categories.get(record._id)
-          .then(category => {
-            Object.keys(obj).forEach(key => {
-              expect(category[0][key]).toEqual(obj[key]);
+          .then(results => {
+            Object.keys(list).forEach(key => {
+              expect(results[0][key]).toEqual(list[key]);
             });
           });
+      });
+  });
+  
+  it('can update() a category', () => {
+    let list = { name: 'Test Category' };
+    return categories.create(list)
+      .then(record => {
+        return categories.update(record._id, { name: 'test2' })
+          .then(updated => {
+
+            expect(updated).toEqual({ name: 'test2' });
+          })
+          .catch(error => console.error( error));
+
+      });
+  });
+
+
+
+  it('can delete() a category', () => {
+    let list = { name: 'Test Category' };
+    return categories.create(list)
+      .then(record => {
+        console.log('record-id', record);
+        return categories.delete(record._id)
+          .then(results => {
+
+            expect(results).toEqual(undefined);
+          })
+          .catch(error => console.error( error));
+
       });
   });
 
